@@ -18,6 +18,7 @@ struct ExerciseListView: View {
 
     var exerciseSections: [ExerciseSection]
     @Query var categories: [ExerciseCategory]
+    @Query var exercises: [Exercise]
     
     var body: some View {
         NavigationView {
@@ -28,10 +29,15 @@ struct ExerciseListView: View {
             }
             .navigationBarTitle("Geräte", displayMode: .inline)
         }
+        .onAppear {
+            printAll()
+        }
     }
     
     private func printAll() {
-        print(categories)
+        for exercise in exercises {
+            print(exercise.name)
+        }
     }
     
     

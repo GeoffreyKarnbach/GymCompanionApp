@@ -11,36 +11,14 @@ import CoreData
 
 @main
 struct Gym_Companion_AppApp: App {
+    @AppStorage("isFirstTimeLaunch") private var isFirstTimeLaunch: Bool = true
 
     var body: some Scene {
         WindowGroup {
             TabBarView()
         }
-        .modelContainer(for: [
-            ExerciseInTraining.self,
-            ExerciseCategory.self,
-            ExerciseExecution.self,
-            TrainingPlan.self,
-            ExerciseExecutionSet.self,
-            Exercise.self
-            
-        ])
+        .modelContainer(ContainerGenerator.create(shouldCreateDefaults: &isFirstTimeLaunch))
+
     }
-    
-    /**
-    private func addInitialContent(context: ModelContext) throws {
-        let categoryNames = ["Arms", "Legs", "Chest", "Back", "Core"]
-        
-        for name in categoryNames {
-            let category = ExerciseCategory()
-            category.name = name
-            // Set other properties if needed
-        }
-        
-        try context.save()
-        
-        
-    }
-     **/
 
 }
