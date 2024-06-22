@@ -27,6 +27,7 @@
 		8F55B42F2C26C4B00058811B /* ContainerGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F55B42E2C26C4B00058811B /* ContainerGenerator.swift */; };
 		8F55B4312C26C5490058811B /* JsonDecoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F55B4302C26C5490058811B /* JsonDecoders.swift */; };
 		8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4322C26C9980058811B /* exercisesDefault.json */; };
+		8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */; };
 		8FE953992C2213A000F774E9 /* Gym_Companion_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */; };
 		8FE953A32C2213A000F774E9 /* Gym_Companion_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A22C2213A000F774E9 /* Gym_Companion_AppUITests.swift */; };
 		8FE953A52C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A42C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift */; };
@@ -70,6 +71,7 @@
 		8F55B42E2C26C4B00058811B /* ContainerGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerGenerator.swift; sourceTree = "<group>"; };
 		8F55B4302C26C5490058811B /* JsonDecoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoders.swift; sourceTree = "<group>"; };
 		8F55B4322C26C9980058811B /* exercisesDefault.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefault.json; sourceTree = "<group>"; };
+		8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefaultCategories.json; sourceTree = "<group>"; };
 		8FE953822C22139F00F774E9 /* Gym Companion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gym Companion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE953942C2213A000F774E9 /* Gym Companion AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gym Companion AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_Companion_AppTests.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				8F55B4322C26C9980058811B /* exercisesDefault.json */,
+				8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */,
 				8F55B4052C26BEB40058811B /* Data */,
 				8F55B40C2C26BEB40058811B /* Entitites */,
 				8F55B4102C26BEB40058811B /* ExerciseList */,
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */,
+				8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */,
 				8F55B42C2C26BEB40058811B /* Preview Assets.xcassets in Resources */,
 				8F55B4292C26BEB40058811B /* Assets.xcassets in Resources */,
 			);

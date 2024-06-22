@@ -16,13 +16,7 @@ struct TabBarView: View {
                     Text("Trainingspläne")
                 }
             
-            ExerciseListView(exerciseSections: [
-                ExerciseSection(title: "Arme", exercises: ["Arme 1A", "Arme 2A"]),
-                ExerciseSection(title: "Bank", exercises: ["Bank 1A", "Bank 2A"]),
-                ExerciseSection(title: "Bauch", exercises: ["Bauch 1A", "Bauch 2A"]),
-                ExerciseSection(title: "Beine", exercises: ["Beine 1A"]),
-                ExerciseSection(title: "Brust", exercises: ["Brust 1A", "Brust 2A", "Brust 3A", "Brust 3A", "Brust 3A", "Brust 3A"])
-            ])
+            ExerciseListView()
                 .tabItem {
                     Image(systemName: "dumbbell")
                     Text("Geräte")

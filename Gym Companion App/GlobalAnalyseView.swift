@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct GlobalAnalyseView: View {
+    @AppStorage("isFirstTimeLaunch") private var isFirstTimeLaunch: Bool = true
+
     var body: some View {
-        Text("ANALYSE VIEW")
+        Button("DELETE ALL CONTENT") {
+            isFirstTimeLaunch = true
+        }
     }
 }
 

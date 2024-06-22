@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ExerciseSectionView: View {
     
-    var sectionTitle: String
-    var exercises: [String]
+    var sectionTitle: String = ""
+    var exercises: [Exercise] = []
 
     var body: some View {
         Section(header: Text(sectionTitle))
         {
             ForEach(exercises, id: \.self) {
                 exercise in
-                ExerciseItemView(exerciseName: exercise)
+                ExerciseItemView(exerciseName: exercise.name)
             }
         }
     }
 }
 
 #Preview {
-    ExerciseSectionView(sectionTitle: "Arme", exercises: ["Arme 1A", "Arme 2A"])
+    ExerciseSectionView()
 }

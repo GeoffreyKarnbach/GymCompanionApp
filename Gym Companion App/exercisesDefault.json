@@ -8,6 +8,16 @@
        "name": "Arme 2",
        "fullname": "Scott Curl Sitzend",
        "categoryName": "Arme"
+    },
+    {
+       "name": "Arme 3A",
+       "fullname": "Trizepsmaschine",
+       "categoryName": "Arme"
+    },
+    {
+       "name": "Arme 3B",
+       "fullname": "Trizeps Spezial",
+       "categoryName": "Arme"
     }
 ]
 
