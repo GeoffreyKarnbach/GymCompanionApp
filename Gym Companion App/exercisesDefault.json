@@ -18,6 +18,11 @@
        "name": "Arme 3B",
        "fullname": "Trizeps Spezial",
        "categoryName": "Arme"
+    },
+    {
+       "name": "Arme 3C",
+       "fullname": "Dipmaschine",
+       "categoryName": "Arme"
     }
 ]
 

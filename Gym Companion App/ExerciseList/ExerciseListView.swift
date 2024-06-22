@@ -16,7 +16,7 @@ struct ExerciseListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(categories, id: \.self) { category in
+                ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) { category in
                     ExerciseSectionView(sectionTitle: category.name, exercises: category.exercises)
                 }
             }
