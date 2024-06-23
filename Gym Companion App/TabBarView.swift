@@ -19,7 +19,7 @@ struct TabBarView: View {
             ExerciseListView()
                 .tabItem {
                     Image(systemName: "dumbbell")
-                    Text("Geräte")
+                    Text("Übungen")
                 }
             
             GlobalAnalyseView()

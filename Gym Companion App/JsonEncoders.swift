@@ -39,16 +39,9 @@ struct JsonEncoders {
             exercises.append(exercise)
             
             let updatedJson = try JSONEncoder().encode(exercises)
-            
-            if let updatedJsonString = String(data: updatedJson, encoding: .utf8) {
-                print("Updated JSON:")
-                print(updatedJsonString)
-            }
-            
+                        
             try updatedJson.write(to: url)
-            
-            print("WRITTEN")
-            
+                        
             return true
         } catch {
             print("Error decoding \(fileName).json:", error.localizedDescription)

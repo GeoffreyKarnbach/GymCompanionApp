@@ -1,28 +1,227 @@
 [
     {
-       "name": "Arme 1A",
-       "fullname": "Bizepsmaschine",
-       "categoryName": "Arme"
+        "name": "ARME 1A",
+        "fullname": "Bizepmaschine",
+        "categoryName": "Arme"
     },
     {
-       "name": "Arme 2",
-       "fullname": "Scott Curl Sitzend",
-       "categoryName": "Arme"
+        "name": "ARME 2",
+        "fullname": "Scott Curl sitzend",
+        "categoryName": "Arme"
     },
     {
-       "name": "Arme 3A",
-       "fullname": "Trizepsmaschine",
-       "categoryName": "Arme"
+        "name": "ARME 3A",
+        "fullname": "Trizepsmaschine",
+        "categoryName": "Arme"
     },
     {
-       "name": "Arme 3B",
-       "fullname": "Trizeps Spezial",
-       "categoryName": "Arme"
+        "name": "BANK 1",
+        "fullname": "Universalbank",
+        "categoryName": "Bank"
     },
     {
-       "name": "Arme 3C",
-       "fullname": "Dipmaschine",
-       "categoryName": "Arme"
+        "name": "BANK 2",
+        "fullname": "Flachbank",
+        "categoryName": "Bank"
+    },
+    {
+        "name": "BAUCH 1",
+        "fullname": "Bauchmuskelbank",
+        "categoryName": "Bauch"
+    },
+    {
+        "name": "BAUCH 2",
+        "fullname": "Roman Chair",
+        "categoryName": "Bauch"
+    },
+    {
+        "name": "BAUCH 3",
+        "fullname": "Beinhebegerät",
+        "categoryName": "Bauch"
+    },
+    {
+        "name": "BAUCH 4A",
+        "fullname": "Klappsitz",
+        "categoryName": "Bauch"
+    },
+    {
+        "name": "BAUCH 5B",
+        "fullname": "PURE KRAFT Bauchmuskelmaschine Ab Swing",
+        "categoryName": "Bauch"
+    },
+    {
+        "name": "BEINE 1A",
+        "fullname": "Beinstrecker",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BEINE 2A",
+        "fullname": "Beinbeuger sitzend",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BEINE 3C",
+        "fullname": "Beinpresse Innovation",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BEINE 3D",
+        "fullname": "PURE KRAFT 45 Grad Beinpresse",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BEINE 4A",
+        "fullname": "PURE KRAFT Wadenmaschine sitzend",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BEINE 5A",
+        "fullname": "PURE KRAFT Kniebeugenmaschine",
+        "categoryName": "Beine"
+    },
+    {
+        "name": "BRUST 1A",
+        "fullname": "Drückbank",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 1B",
+        "fullname": "Schrägbank",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 1C",
+        "fullname": "Negativbank",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 2A",
+        "fullname": "Brustpresse",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 3A",
+        "fullname": "Butterfly mit Pads",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 4A",
+        "fullname": "Schrägbank",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 5",
+        "fullname": "Brustmaschine",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "BRUST 7A",
+        "fullname": "Brustpresse",
+        "categoryName": "Brust"
+    },
+    {
+        "name": "GESÄSS 1A",
+        "fullname": "Abduktionsmaschine",
+        "categoryName": "Gesäß"
+    },
+    {
+        "name": "GESÄSS 2",
+        "fullname": "Adduktionsmaschine",
+        "categoryName": "Gesäß"
+    },
+    {
+        "name": "GEWICHTE 1A",
+        "fullname": "Kurzhanteln",
+        "categoryName": "Gewichte"
+    },
+    {
+        "name": "GEWICHTE 2",
+        "fullname": "Langhanteln",
+        "categoryName": "Gewichte"
+    },
+    {
+        "name": "MULTI 1",
+        "fullname": "Kabelzug Crossover",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "MULTI 2",
+        "fullname": "4-Stationen-Turm",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "MULTI 5",
+        "fullname": "Squat Rack",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "MULTI 6A",
+        "fullname": "Multidrückstation",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "MULTI 7",
+        "fullname": "Klimmzug-Barrenmaschine",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "MULTI 9",
+        "fullname": "Langhantel Rotation",
+        "categoryName": "Multi"
+    },
+    {
+        "name": "RÜCKEN 1B",
+        "fullname": "PURE KRAFT Rudermaschine sitzend Dual",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "RÜCKEN 1D",
+        "fullname": "Rudermaschine bewegliche Griffe",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "RÜCKEN 2A",
+        "fullname": "PURE KRAFT Rudermaschine T-Bar",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "RÜCKEN 3",
+        "fullname": "Butterfly Reverse",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "RÜCKEN 4A",
+        "fullname": "Rückenzugmaschine",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "RÜCKEN 4C",
+        "fullname": "PURE KRAFT Rückenzugmaschine Dual",
+        "categoryName": "Rücken"
+    },
+    {
+        "name": "SCHULTERN 1A",
+        "fullname": "Schulterpresse",
+        "categoryName": "Schultern"
+    },
+    {
+        "name": "SCHULTERN 2A",
+        "fullname": "Schulterpresse",
+        "categoryName": "Schultern"
+    },
+    {
+        "name": "SCHULTERN 3",
+        "fullname": "Seithebemaschine",
+        "categoryName": "Schultern"
+    },
+    {
+        "name": "UNTERER RÜCKEN 1",
+        "fullname": "45 Grad Rückenstrecker",
+        "categoryName": "Unterer Rücken"
+    },
+    {
+        "name": "UNTERER RÜCKEN 2A",
+        "fullname": "Rückenstrecker",
+        "categoryName": "Unterer Rücken"
     }
 ]
-

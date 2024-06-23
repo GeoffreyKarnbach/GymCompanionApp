@@ -10,25 +10,34 @@ import SwiftData
 
 struct ExerciseListView: View {
     @Environment(\.modelContext) private var context
-    @State private var isShowingNewExercise: Bool = false
+    @State private var isShowingNewExerciseScreen: Bool = false
+    @State private var isShowingNewExercisesOnly: Bool = false
 
     @Query var categories: [ExerciseCategory]
+        
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) { category in
-                    ExerciseSectionView(sectionTitle: category.name, exercises: category.exercises)
-                }
+                    ExerciseSectionView(sectionTitle: category.name, showOnlyCustomExercises: isShowingNewExercisesOnly, exercises: category.exercises)                }
             }
             .navigationTitle("Übungen")
-            .sheet(isPresented: $isShowingNewExercise) { AddCustomExercise() }
+            .sheet(isPresented: $isShowingNewExerciseScreen) { AddCustomExercise() }
             .toolbar {
-                Button(action: {
-                    isShowingNewExercise = true
-                })
-                {
-                    HStack {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isShowingNewExercisesOnly.toggle() // Toggle the state
+                    }) {
+                        Image(systemName: "pencil.and.list.clipboard")
+                    }
+                    .foregroundColor(isShowingNewExercisesOnly ? .blue : .primary) // Optional: change color based on state
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isShowingNewExerciseScreen = true
+                    }) {
                         Image(systemName: "plus.circle")
                     }
                 }
@@ -53,7 +62,7 @@ struct AddCustomExercise: View {
                 TextField("Kurzer Name", text: $name)
                 TextField("Langer Name", text: $fullname)
                 Picker("Kategorie", selection: $category) {
-                    ForEach(categories, id: \.self) {
+                    ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) {
                         Text($0.name).tag($0.name)
                     }
                 }
