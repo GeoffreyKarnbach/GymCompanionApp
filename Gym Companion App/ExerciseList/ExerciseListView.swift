@@ -20,7 +20,16 @@ struct ExerciseListView: View {
         NavigationView {
             List {
                 ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) { category in
-                    ExerciseSectionView(sectionTitle: category.name, showOnlyCustomExercises: isShowingNewExercisesOnly, exercises: category.exercises)                }
+                    let customExerciseCount = isShowingNewExercisesOnly ? category.exercises.filter { !$0.isDefault }.count : 1
+
+                    if customExerciseCount > 0 {
+                        ExerciseSectionView(sectionTitle: category.name, showOnlyCustomExercises: isShowingNewExercisesOnly, exercises: category.exercises)
+                    }
+                    else {
+                        EmptyView()
+                    }
+                    
+                }
             }
             .navigationTitle("Übungen")
             .sheet(isPresented: $isShowingNewExerciseScreen) { AddCustomExercise() }

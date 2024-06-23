@@ -11,13 +11,15 @@ struct ExerciseItemView: View {
     var exercise: Exercise
     
     var body: some View {
-        HStack
-        {
-            Image(systemName: "dumbbell.fill")
-                .scaledToFit()
-            Text(exercise.name)
-                .padding(.leading, 8)
-                .foregroundColor(exercise.isDefault ? .black: .blue)
+        NavigationLink(destination: ExerciseView(exercise: exercise)) {
+            HStack
+            {
+                Image(systemName: "dumbbell.fill")
+                    .scaledToFit()
+                Text(exercise.name)
+                    .padding(.leading, 8)
+                    .foregroundColor(exercise.isDefault ? .black: .blue)
+            }
         }
     }
 }
