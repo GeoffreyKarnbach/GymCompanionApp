@@ -31,6 +31,8 @@
 		8FE953992C2213A000F774E9 /* Gym_Companion_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */; };
 		8FE953A32C2213A000F774E9 /* Gym_Companion_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A22C2213A000F774E9 /* Gym_Companion_AppUITests.swift */; };
 		8FE953A52C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A42C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift */; };
+		8FEC335D2C2829E700E9D11C /* exercisesCustom.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FEC335C2C2829E700E9D11C /* exercisesCustom.json */; };
+		8FEC335F2C282D9200E9D11C /* JsonEncoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEC335E2C282D9200E9D11C /* JsonEncoders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		8FE9539E2C2213A000F774E9 /* Gym Companion AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gym Companion AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE953A22C2213A000F774E9 /* Gym_Companion_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_Companion_AppUITests.swift; sourceTree = "<group>"; };
 		8FE953A42C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_Companion_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8FEC335C2C2829E700E9D11C /* exercisesCustom.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesCustom.json; sourceTree = "<group>"; };
+		8FEC335E2C282D9200E9D11C /* JsonEncoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonEncoders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 			children = (
 				8F55B4322C26C9980058811B /* exercisesDefault.json */,
 				8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */,
+				8FEC335C2C2829E700E9D11C /* exercisesCustom.json */,
 				8F55B4052C26BEB40058811B /* Data */,
 				8F55B40C2C26BEB40058811B /* Entitites */,
 				8F55B4102C26BEB40058811B /* ExerciseList */,
@@ -169,6 +174,7 @@
 				8F55B41A2C26BEB40058811B /* TabBarView.swift */,
 				8F55B42E2C26C4B00058811B /* ContainerGenerator.swift */,
 				8F55B4302C26C5490058811B /* JsonDecoders.swift */,
+				8FEC335E2C282D9200E9D11C /* JsonEncoders.swift */,
 			);
 			path = "Gym Companion App";
 			sourceTree = SOURCE_ROOT;
@@ -314,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FEC335D2C2829E700E9D11C /* exercisesCustom.json in Resources */,
 				8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */,
 				8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */,
 				8F55B42C2C26BEB40058811B /* Preview Assets.xcassets in Resources */,
@@ -344,6 +351,7 @@
 			files = (
 				8F55B41F2C26BEB40058811B /* ExerciseExecution.swift in Sources */,
 				8F55B41E2C26BEB40058811B /* ExerciseCategory.swift in Sources */,
+				8FEC335F2C282D9200E9D11C /* JsonEncoders.swift in Sources */,
 				8F55B42D2C26BEB40058811B /* TabBarView.swift in Sources */,
 				8F55B4212C26BEB40058811B /* ExerciseInTraining.swift in Sources */,
 				8F55B4282C26BEB40058811B /* TrainingsPlanSingleExerciseView.swift in Sources */,

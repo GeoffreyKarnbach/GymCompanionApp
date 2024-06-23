@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct ExerciseItemView: View {
-    var exerciseName: String
+    var exercise: Exercise
     
     var body: some View {
         HStack
         {
             Image(systemName: "dumbbell.fill")
                 .scaledToFit()
-            Text(exerciseName)
+            Text(exercise.name)
                 .padding(.leading, 8)
+                .foregroundColor(exercise.isDefault ? .black: .blue)
         }
     }
-}
-
-#Preview {
-    ExerciseItemView(exerciseName: "Arme 1A")
 }

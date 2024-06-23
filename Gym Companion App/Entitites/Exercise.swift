@@ -11,6 +11,7 @@ import SwiftData
 
 
 @Model public class Exercise {
+    var isDefault: Bool
     var explanation: String
     var fullName: String
     var iconName: String
@@ -22,7 +23,8 @@ import SwiftData
     var executions: [ExerciseExecution]?
     @Relationship(inverse: \ExerciseInTraining.exercise) var inTrainings: [ExerciseInTraining]?
     
-    init(explanation: String = "", fullName: String = "", iconName: String = "", maxWeight: Int32 = 0, minWeight: Int32 = 0, name: String = "", weightStep: Int32 = 0, category: ExerciseCategory? = nil, executions: [ExerciseExecution]? = nil, inTrainings: [ExerciseInTraining]? = nil) {
+    init(isDefault: Bool = true, explanation: String = "", fullName: String = "", iconName: String = "", maxWeight: Int32 = 0, minWeight: Int32 = 0, name: String = "", weightStep: Int32 = 0, category: ExerciseCategory? = nil, executions: [ExerciseExecution]? = nil, inTrainings: [ExerciseInTraining]? = nil) {
+        self.isDefault = isDefault
         self.explanation = explanation
         self.fullName = fullName
         self.iconName = iconName

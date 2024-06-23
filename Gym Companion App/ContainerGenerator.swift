@@ -63,12 +63,41 @@ actor ContainerGenerator {
                     
                     let exerciseCategoryItem = exerciseCategory[0]
                     
-                    let item = Exercise(explanation: "TODO", fullName: exercise.fullname, iconName: "dumbbell", maxWeight: 100, minWeight: 20, name: exercise.name, weightStep: 5, category: exerciseCategoryItem, executions: [], inTrainings: [])
+                    let item = Exercise(isDefault: true, explanation: "TODO", fullName: exercise.fullname, iconName: "dumbbell", maxWeight: 100, minWeight: 20, name: exercise.name, weightStep: 5, category: exerciseCategoryItem, executions: [], inTrainings: [])
                     
                     exerciseCategoryItem.exercises.append(item)
                     
                     container.mainContext.insert(item)
                 }
+            }
+            
+        }
+        
+        let customExercises = JsonDecoders.decodeExercises(from: "exercisesCustom")
+
+        if !customExercises.isEmpty {
+            customExercises.forEach { exercise in
+                
+                var fetchDescriptor = FetchDescriptor<ExerciseCategory>(
+                    predicate: #Predicate {
+                        category in category.name == exercise.categoryName
+                    }
+                )
+                
+                fetchDescriptor.fetchLimit = 1
+                
+                let exerciseCategory = try! container.mainContext.fetch(fetchDescriptor)
+                if exerciseCategory.count != 1 {
+                    fatalError("Cannot find category!!!")
+                }
+                
+                let exerciseCategoryItem = exerciseCategory[0]
+                
+                let item = Exercise(isDefault: false, explanation: "TODO", fullName: exercise.fullname, iconName: "dumbbell", maxWeight: 100, minWeight: 20, name: exercise.name, weightStep: 5, category: exerciseCategoryItem, executions: [], inTrainings: [])
+                
+                exerciseCategoryItem.exercises.append(item)
+                
+                container.mainContext.insert(item)
             }
         }
 

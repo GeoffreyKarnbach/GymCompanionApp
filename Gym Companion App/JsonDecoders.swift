@@ -65,4 +65,5 @@ struct JsonDecoders {
             return []
         }
     }
+
 }

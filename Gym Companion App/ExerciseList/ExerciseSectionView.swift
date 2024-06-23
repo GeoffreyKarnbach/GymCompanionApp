@@ -17,7 +17,7 @@ struct ExerciseSectionView: View {
         {
             ForEach(exercises.sorted(by: { $0.name < $1.name }), id: \.self) {
                 exercise in
-                ExerciseItemView(exerciseName: exercise.name)
+                ExerciseItemView(exercise: exercise)
             }
         }
     }
