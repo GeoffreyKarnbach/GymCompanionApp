@@ -11,8 +11,15 @@ import SwiftData
 struct TrainingsPlanEditView: View {
     @Environment(\.modelContext) private var context
     @State private var isShowingNewExerciseScreen: Bool = false
-
+    
     var trainingsplan: TrainingPlan
+    
+    var exerciseNames: [String] {
+        if let exercises = trainingsplan.exerciseInTraining {
+            return exercises.compactMap { $0.exercise?.name }
+        }
+        return []
+    }
     
     var body: some View {
         VStack {
@@ -21,6 +28,12 @@ struct TrainingsPlanEditView: View {
                     $0.order < $1.order
                 }), id: \.self) { exercise in
                     TrainingsPlanSingleExerciseView(exercise: exercise)
+                    .swipeActions {
+                        Button("Löschen", role: .destructive) {
+                            context.delete(exercise)
+                        }
+                        .tint(.red)
+                    }
                 }
                 Button("+ Neue Übung") {
                     isShowingNewExerciseScreen = true
@@ -29,7 +42,9 @@ struct TrainingsPlanEditView: View {
         }
         .navigationTitle(trainingsplan.name)
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $isShowingNewExerciseScreen) { AddExerciseToPlan() }
+        .sheet(isPresented: $isShowingNewExerciseScreen) { AddExerciseToPlan(currentOrderPosition: Int32(trainingsplan.exerciseInTraining!.count + 1), currentTrainingsplan: trainingsplan, alreadyAddedExerciseNames: exerciseNames)
+        }
+        
 
     }
 }
@@ -52,14 +67,17 @@ struct AddExerciseToPlan: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     
+    var currentOrderPosition: Int32
+    var currentTrainingsplan: TrainingPlan
+    
     @State var categoryName: String = ""
     @State var selectedExerciseName: String = ""
-    @State private var setCount: Int = 1
-    @State private var repCount: Int = 1
+    @State private var setCount: Int32 = 1
+    @State private var repCount: Int32 = 1
     @State private var weight: Float = 10
 
     
-    var alreadyAddedExerciseNames: [String] = []
+    var alreadyAddedExerciseNames: [String]
     
     @Query private var categories: [ExerciseCategory]
     
@@ -69,6 +87,7 @@ struct AddExerciseToPlan: View {
         NavigationStack{
             Form {
                 Picker("Kategorie", selection: $categoryName) {
+                    Text("").tag("")
                     ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) {
                         Text($0.name).tag($0.name)
                     }
@@ -78,12 +97,19 @@ struct AddExerciseToPlan: View {
                         $0.category?.name == categoryName &&
                         !alreadyAddedExerciseNames.contains($0.name)
                     }
-                                        
-                    Picker("Übung", selection: $selectedExerciseName) {
-                        ForEach(filteredExercises.sorted(by: { $0.name < $1.name }), id: \.self) {
-                            Text($0.name).tag($0.name)
+                    
+                    if filteredExercises.count > 0 {
+                        Picker("Übung", selection: $selectedExerciseName) {
+                            Text("").tag("")
+                            ForEach(filteredExercises.sorted(by: { $0.name < $1.name }), id: \.self) {
+                                Text($0.name).tag($0.name)
+                            }
                         }
+                    } else {
+                        Text("Keine Übungen mehr in der Kategorie")
                     }
+                                        
+ 
                 }
                 
                 if selectedExerciseName != "" {
@@ -97,30 +123,56 @@ struct AddExerciseToPlan: View {
                     let maxWeightStepper = selectedExercise?.maxWeight ?? 200
                     let weightStepStepper = selectedExercise?.weightStep ?? 2.5
                     
-                    
-                    Stepper("Gewicht: \(weight.formatted())", value: $weight, in: Float(minWeightStepper)...Float(maxWeightStepper), step: weightStepStepper)
+                    HStack {
+                        LabeledContent {
+                            var formatter: NumberFormatter {
+                                let formatterIntern = NumberFormatter()
+                                formatterIntern.numberStyle = .decimal
+                                return formatterIntern
+                            }
+                            
+                            TextField("Gewicht:", value: $weight, formatter: formatter, onCommit: {
+                                weight = round(weight / 2.5) * 2.5
+                            })
+                                .keyboardType(.decimalPad)
+                                .frame(minWidth: 15, maxWidth: 60)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        } label: {
+                            Text("Gewicht:")
+                        }
 
+                        Stepper("Gewicht:", value: $weight, in: Float(minWeightStepper)...Float(maxWeightStepper), step: weightStepStepper)
+                            .labelsHidden()
+                            .onAppear {
+                                weight = Float(selectedExercise?.minWeight ?? 0)
+                            }
+                    }
+                    
+                    
                 }
             }
             .navigationTitle("Hinzufügen")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
+                
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Button("Abbrechen") { dismiss() }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Speichern") {
-                        /**
-                        let selectedCategory = categories.first(where: {$0.name == category})
                         
-                        let newExercise = Exercise(isDefault: false, explanation: "", fullName: fullname, iconName: "dumbbell", maxWeight: 200, minWeight: 5, name: name, weightStep: 1, category: selectedCategory, executions: [], inTrainings: [])
+                        if selectedExerciseName == "" {
+                            return
+                        }
+                                                
+                        let selectedExercise = exercises.first(where: {$0.name == selectedExerciseName})
                         
-                        context.insert(newExercise)
+                        let newExerciseInTraining = ExerciseInTraining(order: currentOrderPosition, repCount: repCount, setCount: setCount, weight: weight, exercise: selectedExercise, exerciseExecution: [], trainingPlan: nil)
                         
-                        let jsonEncodableNewExercise = ExerciseJSON(name: name, fullname: fullname, categoryName: category)
+                        context.insert(newExerciseInTraining)
+                                                
+                        currentTrainingsplan.exerciseInTraining?.append(newExerciseInTraining)
                         
-                        let _ = JsonEncoders.encodeNewCustomExercise(fileName: "exercisesCustom", exercise: jsonEncodableNewExercise)
-                         **/
                         
                         dismiss()
                     }

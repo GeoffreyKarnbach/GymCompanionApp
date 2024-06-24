@@ -25,6 +25,7 @@ struct ExerciseView: View {
         }
         .toolbar {
             if !exercise.isDefault {
+                // TODO: ADD DELETE BUTTON
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         isShowingExerciseEditScreen = true

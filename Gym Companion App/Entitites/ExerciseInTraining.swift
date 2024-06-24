@@ -14,12 +14,12 @@ import SwiftData
     var order: Int32 = 0
     var repCount: Int32 = 0
     var setCount: Int32 = 0
-    var weight: Int32 = 0
+    var weight: Float = 0
     var exercise: Exercise?
     var exerciseExecution: [ExerciseExecution]?
     var trainingPlan: TrainingPlan?
     
-    init(order: Int32, repCount: Int32, setCount: Int32, weight: Int32, exercise: Exercise? = nil, exerciseExecution: [ExerciseExecution]? = nil, trainingPlan: TrainingPlan? = nil) {
+    init(order: Int32, repCount: Int32, setCount: Int32, weight: Float, exercise: Exercise? = nil, exerciseExecution: [ExerciseExecution]? = nil, trainingPlan: TrainingPlan? = nil) {
         self.order = order
         self.repCount = repCount
         self.setCount = setCount

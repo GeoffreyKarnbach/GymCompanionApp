@@ -87,7 +87,7 @@ struct AddCustomExercise: View {
                         
                         let selectedCategory = categories.first(where: {$0.name == category})
                         
-                        let newExercise = Exercise(isDefault: false, explanation: "", fullName: fullname, iconName: "dumbbell", maxWeight: 200, minWeight: 5, name: name, weightStep: 1, category: selectedCategory, executions: [], inTrainings: [])
+                        let newExercise = Exercise(isDefault: false, explanation: "", fullName: fullname, iconName: "dumbbell", maxWeight: 200, minWeight: 2, name: name, weightStep: 1, category: selectedCategory, executions: [], inTrainings: [])
                         
                         context.insert(newExercise)
                         
