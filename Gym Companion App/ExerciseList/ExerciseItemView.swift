@@ -18,7 +18,6 @@ struct ExerciseItemView: View {
                     .scaledToFit()
                 Text(exercise.name)
                     .padding(.leading, 8)
-                    .foregroundColor(exercise.isDefault ? .black: .blue)
             }
         }
     }

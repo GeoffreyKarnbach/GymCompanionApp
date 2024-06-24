@@ -33,4 +33,6 @@ struct TabBarView: View {
 
 #Preview {
     TabBarView()
+        .modelContainer(PreviewContainerGenerator.previewContainer)
+
 }

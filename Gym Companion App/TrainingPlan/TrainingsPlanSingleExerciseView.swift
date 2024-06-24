@@ -8,18 +8,15 @@
 import SwiftUI
 
 struct TrainingsPlanSingleExerciseView: View {
-    //var exercise: Exercise = null
+    var exercise: ExerciseInTraining
+    
     var body: some View {
-        GroupBox(label: Text("CATEGORY")) {
+        GroupBox(label: Text(exercise.exercise?.category?.name ?? "TEST CATEGORY")) {
             HStack {
-                Label("NAME", systemImage: "dumbbell.fill")
+                Label(exercise.exercise?.name ?? "TEST NAME", systemImage: "dumbbell.fill")
                 Spacer()
             }
             .padding(.top, 10)
         }
     }
-}
-
-#Preview {
-    TrainingsPlanSingleExerciseView()
 }

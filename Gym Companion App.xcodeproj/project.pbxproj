@@ -29,6 +29,7 @@
 		8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4322C26C9980058811B /* exercisesDefault.json */; };
 		8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */; };
 		8FBB73C22C28954F003188BA /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB73C12C28954F003188BA /* ExerciseView.swift */; };
+		8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */; };
 		8FE953992C2213A000F774E9 /* Gym_Companion_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */; };
 		8FE953A32C2213A000F774E9 /* Gym_Companion_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A22C2213A000F774E9 /* Gym_Companion_AppUITests.swift */; };
 		8FE953A52C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953A42C2213A000F774E9 /* Gym_Companion_AppUITestsLaunchTests.swift */; };
@@ -76,6 +77,7 @@
 		8F55B4322C26C9980058811B /* exercisesDefault.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefault.json; sourceTree = "<group>"; };
 		8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefaultCategories.json; sourceTree = "<group>"; };
 		8FBB73C12C28954F003188BA /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainerGenerator.swift; sourceTree = "<group>"; };
 		8FE953822C22139F00F774E9 /* Gym Companion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gym Companion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE953942C2213A000F774E9 /* Gym Companion AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gym Companion AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gym_Companion_AppTests.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				8F55B42E2C26C4B00058811B /* ContainerGenerator.swift */,
 				8F55B4302C26C5490058811B /* JsonDecoders.swift */,
 				8FEC335E2C282D9200E9D11C /* JsonEncoders.swift */,
+				8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */,
 			);
 			path = "Gym Companion App";
 			sourceTree = SOURCE_ROOT;
@@ -366,6 +369,7 @@
 				8F55B4202C26BEB40058811B /* ExerciseExecutionSet.swift in Sources */,
 				8F55B4222C26BEB40058811B /* TrainingPlan.swift in Sources */,
 				8F55B4232C26BEB40058811B /* ExerciseItemView.swift in Sources */,
+				8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */,
 				8F55B41D2C26BEB40058811B /* Exercise.swift in Sources */,
 				8F55B42B2C26BEB40058811B /* Gym_Companion_AppApp.swift in Sources */,
 				8F55B42F2C26C4B00058811B /* ContainerGenerator.swift in Sources */,

@@ -108,6 +108,7 @@ struct AddCustomExercise: View {
 
 #Preview {
     ExerciseListView()
+        .modelContainer(PreviewContainerGenerator.previewContainer)
 }
 
 
