@@ -10,7 +10,7 @@ import Foundation
 import SwiftData
 
 
-@Model public class ExerciseInTraining {
+@Model public class ExerciseInTraining: Hashable{
     var order: Int32 = 0
     var repCount: Int32 = 0
     var setCount: Int32 = 0
@@ -18,6 +18,7 @@ import SwiftData
     var exercise: Exercise?
     var exerciseExecution: [ExerciseExecution]?
     var trainingPlan: TrainingPlan?
+    let vID = UUID()
     
     init(order: Int32, repCount: Int32, setCount: Int32, weight: Float, exercise: Exercise? = nil, exerciseExecution: [ExerciseExecution]? = nil, trainingPlan: TrainingPlan? = nil) {
         self.order = order
@@ -28,5 +29,28 @@ import SwiftData
         self.exerciseExecution = exerciseExecution
         self.trainingPlan = trainingPlan
     }
+    
+    // Hash function
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(order)
+        hasher.combine(repCount)
+        hasher.combine(setCount)
+        hasher.combine(weight)
+        hasher.combine(exercise)
+        hasher.combine(exerciseExecution)
+        hasher.combine(trainingPlan)
+    }
+    
+    /**
+    public static func == (lhs: ExerciseInTraining, rhs: ExerciseInTraining) -> Bool {
+            return lhs.order == rhs.order &&
+                   lhs.repCount == rhs.repCount &&
+                   lhs.setCount == rhs.setCount &&
+                   lhs.weight == rhs.weight &&
+                   lhs.exercise == rhs.exercise &&
+                   lhs.exerciseExecution == rhs.exerciseExecution &&
+                   lhs.trainingPlan == rhs.trainingPlan
+        }
+     **/
     
 }

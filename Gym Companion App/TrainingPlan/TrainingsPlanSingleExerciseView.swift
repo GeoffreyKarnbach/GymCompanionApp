@@ -17,6 +17,22 @@ struct TrainingsPlanSingleExerciseView: View {
                 Spacer()
             }
             .padding(.top, 10)
+            Divider()
+            HStack {
+                Label("Sets: " + exercise.setCount.description, systemImage: "arrow.counterclockwise.circle")
+                Spacer()
+            }
+            .padding(.top, 10)
+            HStack {
+                Label("Reps: " + exercise.repCount.description, systemImage: "arrow.counterclockwise.circle.fill")
+                Spacer()
+            }
+            .padding(.top, 10)
+            HStack {
+                Label("Gewicht: " + exercise.weight.description + " kg", systemImage: "scalemass")
+                Spacer()
+            }
+            .padding(.top, 10)
         }
     }
 }

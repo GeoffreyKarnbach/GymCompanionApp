@@ -168,9 +168,7 @@ struct AddExerciseToPlan: View {
                         let selectedExercise = exercises.first(where: {$0.name == selectedExerciseName})
                         
                         let newExerciseInTraining = ExerciseInTraining(order: currentOrderPosition, repCount: repCount, setCount: setCount, weight: weight, exercise: selectedExercise, exerciseExecution: [], trainingPlan: nil)
-                        
-                        context.insert(newExerciseInTraining)
-                                                
+                                                                    
                         currentTrainingsplan.exerciseInTraining?.append(newExerciseInTraining)
                         
                         
