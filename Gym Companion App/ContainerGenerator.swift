@@ -18,7 +18,8 @@ actor ContainerGenerator {
             ExerciseExecution.self,
             TrainingPlan.self,
             ExerciseExecutionSet.self,
-            Exercise.self
+            Exercise.self,
+            TrainingPlanExecution.self
             
         ])
         
@@ -29,7 +30,14 @@ actor ContainerGenerator {
             
             try! container.mainContext.delete(model: ExerciseCategory.self)
             try! container.mainContext.delete(model: Exercise.self)
-            
+            try! container.mainContext.delete(model: ExerciseInTraining.self)
+            try! container.mainContext.delete(model: ExerciseExecution.self)
+            try! container.mainContext.delete(model: TrainingPlan.self)
+            try! container.mainContext.delete(model: ExerciseExecutionSet.self)
+            try! container.mainContext.delete(model: TrainingPlanExecution.self)
+
+
+
             shouldCreateDefaults = false
             
             let exerciseCategories = JsonDecoders.decodeExerciseCategories(from: "exercisesDefaultCategories")
@@ -101,6 +109,8 @@ actor ContainerGenerator {
                 }
             }
         }
+        
+        print(container.configurations.first?.url.path(percentEncoded: false) ?? "TEST")
 
         return container
     }

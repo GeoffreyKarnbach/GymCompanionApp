@@ -12,14 +12,15 @@ import SwiftData
 class PreviewContainerGenerator {
     static let previewContainer: ModelContainer = {
         do {
+            
             let schema = Schema([
                 ExerciseInTraining.self,
                 ExerciseCategory.self,
                 ExerciseExecution.self,
                 TrainingPlan.self,
                 ExerciseExecutionSet.self,
-                Exercise.self
-                
+                Exercise.self,
+                TrainingPlanExecution.self
             ])
             
             

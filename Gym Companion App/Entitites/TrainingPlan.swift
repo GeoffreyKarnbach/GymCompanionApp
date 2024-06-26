@@ -13,7 +13,9 @@ import SwiftData
 @Model public class TrainingPlan {
     var days: String
     var name: String
-    var exerciseInTraining: [ExerciseInTraining]?
+    @Relationship(deleteRule: .cascade, inverse: \ExerciseInTraining.trainingPlan) var exerciseInTraining: [ExerciseInTraining]?
+    @Relationship(inverse: \TrainingPlanExecution.trainingsPlan) var trainingPlanExecutions: [TrainingPlanExecution]?
+
     
     init(days: String = "", name: String = "", exerciseInTraining: [ExerciseInTraining]? = nil) {
         self.days = days

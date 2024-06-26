@@ -32,13 +32,7 @@ import SwiftData
     
     // Hash function
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(order)
-        hasher.combine(repCount)
-        hasher.combine(setCount)
-        hasher.combine(weight)
-        hasher.combine(exercise)
-        hasher.combine(exerciseExecution)
-        hasher.combine(trainingPlan)
+        hasher.combine(vID)
     }
     
     /**

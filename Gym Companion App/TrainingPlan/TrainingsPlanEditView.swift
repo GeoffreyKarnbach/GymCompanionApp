@@ -14,6 +14,8 @@ struct TrainingsPlanEditView: View {
     
     var trainingsplan: TrainingPlan
     
+    @State var exerciseInTrainingPlanToEdit: ExerciseInTraining?
+    
     var exerciseNames: [String] {
         if let exercises = trainingsplan.exerciseInTraining {
             return exercises.compactMap { $0.exercise?.name }
@@ -33,6 +35,10 @@ struct TrainingsPlanEditView: View {
                             context.delete(exercise)
                         }
                         .tint(.red)
+                        Button("Bearbeiten") {
+                            exerciseInTrainingPlanToEdit = exercise
+                        }
+                        .tint(.blue)
                     }
                 }
                 Button("+ Neue Übung") {
@@ -43,6 +49,9 @@ struct TrainingsPlanEditView: View {
         .navigationTitle(trainingsplan.name)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isShowingNewExerciseScreen) { AddExerciseToPlan(currentOrderPosition: Int32(trainingsplan.exerciseInTraining!.count + 1), currentTrainingsplan: trainingsplan, alreadyAddedExerciseNames: exerciseNames)
+        }
+        .sheet(item: $exerciseInTrainingPlanToEdit) { exercise in
+            EditExerciseInPlan(editableExercise: exercise, alreadyAddedExerciseNames: exerciseNames)
         }
         
 
@@ -173,6 +182,123 @@ struct AddExerciseToPlan: View {
                         
                         
                         dismiss()
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+struct EditExerciseInPlan: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var context
+    
+    @State var categoryName: String = ""
+    @State var selectedExerciseName: String = ""
+    
+    @Bindable var editableExercise: ExerciseInTraining
+
+    @State var alreadyAddedExerciseNames: [String]
+    
+    @Query private var categories: [ExerciseCategory]
+    
+    @Query private var exercises: [Exercise]
+
+    var body: some View {
+        NavigationStack{
+            Form {
+                Picker("Kategorie", selection: $categoryName) {
+                    Text("").tag("")
+                    ForEach(categories.sorted(by: { $0.name < $1.name }), id: \.self) {
+                        Text($0.name).tag($0.name)
+                    }
+                }
+                if categoryName != "" {
+                    let filteredExercises = self.exercises.filter {
+                        $0.category?.name == categoryName &&
+                        !alreadyAddedExerciseNames.contains($0.name)
+                    }
+                    
+                    if filteredExercises.count > 0 {
+                        Picker("Übung", selection: $selectedExerciseName) {
+                            Text("").tag("")
+                            ForEach(filteredExercises.sorted(by: { $0.name < $1.name }), id: \.self) {
+                                Text($0.name).tag($0.name)
+                            }
+                        }
+                    } else {
+                        Text("Keine Übungen mehr in der Kategorie")
+                    }
+                                        
+ 
+                }
+                
+                if selectedExerciseName != "" {
+                    Stepper("Sätze: \(editableExercise.setCount)", value: $editableExercise.setCount, in: 1...10, step: 1)
+                    
+                    Stepper("Wiederholungen: \(editableExercise.repCount)", value: $editableExercise.repCount, in: 1...50, step: 1)
+                    
+                    let selectedExercise = exercises.filter { $0.name == selectedExerciseName}.first
+                    
+                    let minWeightStepper = selectedExercise?.minWeight ?? 0
+                    let maxWeightStepper = selectedExercise?.maxWeight ?? 200
+                    let weightStepStepper = selectedExercise?.weightStep ?? 2.5
+                    
+                    HStack {
+                        LabeledContent {
+                            var formatter: NumberFormatter {
+                                let formatterIntern = NumberFormatter()
+                                formatterIntern.numberStyle = .decimal
+                                return formatterIntern
+                            }
+                            
+                            TextField("Gewicht:", value: $editableExercise.weight, formatter: formatter, onCommit: {
+                                editableExercise.weight = round(editableExercise.weight / 2.5) * 2.5
+                            })
+                                .keyboardType(.decimalPad)
+                                .frame(minWidth: 15, maxWidth: 60)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        } label: {
+                            Text("Gewicht:")
+                        }
+
+                        Stepper("Gewicht:", value: $editableExercise.weight, in: Float(minWeightStepper)...Float(maxWeightStepper), step: weightStepStepper)
+                            .labelsHidden()
+                            .onAppear {
+                                editableExercise.weight = Float(selectedExercise?.minWeight ?? 0)
+                            }
+                    }
+                    
+                    
+                }
+            }
+            .navigationTitle("Hinzufügen")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button("Speichern") {
+                        
+                        if selectedExerciseName == "" {
+                            return
+                        }
+                                                
+                        let selectedExercise = exercises.first(where: {$0.name == selectedExerciseName})
+                        
+                        editableExercise.exercise = selectedExercise
+                        
+                        dismiss()
+                    }
+                }
+            }
+            .onAppear {
+                categoryName = editableExercise.exercise?.category?.name ?? ""
+                selectedExerciseName = editableExercise.exercise?.name ?? ""
+                
+                if let exerciseName = editableExercise.exercise?.name {
+                    if let index = alreadyAddedExerciseNames.firstIndex(of: exerciseName) {
+                        alreadyAddedExerciseNames.remove(at: index)
                     }
                 }
             }

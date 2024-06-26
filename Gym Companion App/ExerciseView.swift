@@ -10,6 +10,7 @@ import SwiftData
 
 struct ExerciseView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var context
 
     @State private var isShowingExerciseEditScreen: Bool = false
 
@@ -20,17 +21,33 @@ struct ExerciseView: View {
             Text(exercise.fullName)
             Text(exercise.name)
             Text(exercise.category?.name ?? "TEST")
+            if (exercise.inTrainings?.count ?? 0) > 0 {
+                Divider()
+                Text("Übung in Trainingsplänen:")
+                List {
+                    ForEach((exercise.inTrainings?.sorted{($0.trainingPlan?.name ?? "") < ($1.trainingPlan?.name ?? "")})!, id: \.self) {
+                        Text($0.trainingPlan?.name ?? "DEFAULT TRAININGSPLAN NAME")
+                    }
+                }
+            }
+
 
             Spacer()
         }
         .toolbar {
             if !exercise.isDefault {
                 // TODO: ADD DELETE BUTTON
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         isShowingExerciseEditScreen = true
                     }) {
                         Image(systemName: "pencil.circle")
+                    }
+                    Button(action: {
+                        context.delete(exercise)
+                    }) {
+                        Image(systemName: "trash")
+                            .tint(.red)
                     }
                 }
             }

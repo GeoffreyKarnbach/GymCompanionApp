@@ -17,6 +17,8 @@ import SwiftData
     @Relationship(inverse: \ExerciseExecutionSet.exerciseExecution) var exerciseExecutionSets: [ExerciseExecutionSet]?
     var exerciseInTraining: ExerciseInTraining?
     
+    @Relationship(inverse: \TrainingPlanExecution.exerciseExecution) var trainingPlanExecution: TrainingPlanExecution?
+    
     init(executionScore: Int32? = nil, exhaustScore: Int32? = nil, exercise: Exercise? = nil, exerciseExecutionSets: [ExerciseExecutionSet]? = nil, exerciseInTraining: ExerciseInTraining? = nil) {
         self.executionScore = executionScore
         self.exhaustScore = exhaustScore
