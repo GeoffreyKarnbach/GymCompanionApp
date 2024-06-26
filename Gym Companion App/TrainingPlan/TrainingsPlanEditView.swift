@@ -10,7 +10,10 @@ import SwiftData
 
 struct TrainingsPlanEditView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.editMode) private var editMode
+
     @State private var isShowingNewExerciseScreen: Bool = false
+    @State private var isShowingCompactMode: Bool = false
     
     var trainingsplan: TrainingPlan
     
@@ -29,7 +32,7 @@ struct TrainingsPlanEditView: View {
                 ForEach(trainingsplan.exerciseInTraining!.sorted(by: {
                     $0.order < $1.order
                 }), id: \.self) { exercise in
-                    TrainingsPlanSingleExerciseView(exercise: exercise)
+                    TrainingsPlanSingleExerciseView(exercise: exercise, isCompactMode: isShowingCompactMode)
                     .swipeActions {
                         Button("Löschen", role: .destructive) {
                             context.delete(exercise)
@@ -41,6 +44,11 @@ struct TrainingsPlanEditView: View {
                         .tint(.blue)
                     }
                 }
+                .onMove { source, destination in
+                    move(from: source, to: destination)
+                }
+                .onDelete(perform: delete)
+                
                 Button("+ Neue Übung") {
                     isShowingNewExerciseScreen = true
                 }
@@ -53,8 +61,50 @@ struct TrainingsPlanEditView: View {
         .sheet(item: $exerciseInTrainingPlanToEdit) { exercise in
             EditExerciseInPlan(editableExercise: exercise, alreadyAddedExerciseNames: exerciseNames)
         }
-        
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+            
+        }
+        .onChange(of: editMode!.wrappedValue, perform: {newValue in
+            isShowingCompactMode.toggle()
+        })
 
+    }
+    
+    private func delete(at offsets: IndexSet) {
+        trainingsplan.exerciseInTraining?.remove(atOffsets: offsets)
+    }
+    
+    private func move(from source: IndexSet, to destination: Int) {
+        let exercises = trainingsplan.exerciseInTraining!.sorted(by: { $0.order < $1.order })
+        
+        guard let sourceIndex = source.first else {
+            return
+        }
+    
+        let targetindex = sourceIndex > destination ? destination : destination - 1
+    
+        print("Move from " + sourceIndex.description + " to " + targetindex.description)
+        
+        
+        if sourceIndex < targetindex {
+                exercises[sourceIndex].order = Int32(targetindex)
+                
+                // Shift elements between sourceIndex and targetindex down by 1
+                for index in sourceIndex + 1...targetindex {
+                    exercises[index].order -= 1
+                }
+
+        } else {
+            exercises[sourceIndex].order = Int32(targetindex)
+            
+            // Shift elements between targetindex and sourceIndex up by 1
+            for index in targetindex..<sourceIndex {
+                exercises[index].order += 1
+            }
+        }
     }
 }
 
