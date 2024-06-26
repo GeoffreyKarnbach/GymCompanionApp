@@ -14,6 +14,7 @@ struct TrainingsPlanEditView: View {
 
     @State private var isShowingNewExerciseScreen: Bool = false
     @State private var isShowingCompactMode: Bool = false
+    @State private var startActiveTrainingsPlan: Bool = false
     
     var trainingsplan: TrainingPlan
     
@@ -48,9 +49,15 @@ struct TrainingsPlanEditView: View {
                     move(from: source, to: destination)
                 }
                 .onDelete(perform: delete)
-                
-                Button("+ Neue Übung") {
-                    isShowingNewExerciseScreen = true
+                if !isShowingCompactMode {
+                    Button("+ Neue Übung") {
+                        isShowingNewExerciseScreen = true
+                    }
+                    NavigationLink(destination: TrainingPlanActiveView(activeTrainingPlan: trainingsplan), isActive: $startActiveTrainingsPlan) {
+                        Button("Trainingsplan starten") {
+                            startActiveTrainingsPlan = true
+                        }
+                    }
                 }
             }
         }
