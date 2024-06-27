@@ -11,10 +11,12 @@ import SwiftData
 struct TrainingsPlanEditView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.editMode) private var editMode
-
+    @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
+    
     @State private var isShowingNewExerciseScreen: Bool = false
     @State private var isShowingCompactMode: Bool = false
-    @State private var startActiveTrainingsPlan: Bool = false
+    
+    @State private var newTrainingPlanExecution: TrainingPlanExecution?
     
     var trainingsplan: TrainingPlan
     
@@ -28,34 +30,42 @@ struct TrainingsPlanEditView: View {
     }
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(trainingsplan.exerciseInTraining!.sorted(by: {
-                    $0.order < $1.order
-                }), id: \.self) { exercise in
-                    TrainingsPlanSingleExerciseView(exercise: exercise, isCompactMode: isShowingCompactMode)
-                    .swipeActions {
-                        Button("Löschen", role: .destructive) {
-                            context.delete(exercise)
-                        }
-                        .tint(.red)
-                        Button("Bearbeiten") {
-                            exerciseInTrainingPlanToEdit = exercise
-                        }
-                        .tint(.blue)
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(trainingsplan.exerciseInTraining!.sorted(by: {
+                        $0.order < $1.order
+                    }), id: \.self) { exercise in
+                        TrainingsPlanSingleExerciseView(exercise: exercise, isCompactMode: isShowingCompactMode)
+                            .swipeActions {
+                                Button("Löschen", role: .destructive) {
+                                    context.delete(exercise)
+                                }
+                                .tint(.red)
+                                Button("Bearbeiten") {
+                                    exerciseInTrainingPlanToEdit = exercise
+                                }
+                                .tint(.blue)
+                            }
                     }
-                }
-                .onMove { source, destination in
-                    move(from: source, to: destination)
-                }
-                .onDelete(perform: delete)
-                if !isShowingCompactMode {
-                    Button("+ Neue Übung") {
-                        isShowingNewExerciseScreen = true
+                    .onMove { source, destination in
+                        move(from: source, to: destination)
                     }
-                    NavigationLink(destination: TrainingPlanActiveView(activeTrainingPlan: trainingsplan), isActive: $startActiveTrainingsPlan) {
-                        Button("Trainingsplan starten") {
-                            startActiveTrainingsPlan = true
+                    .onDelete(perform: delete)
+                    if !isShowingCompactMode {
+                        Button("+ Neue Übung") {
+                            isShowingNewExerciseScreen = true
+                        }
+                        if (trainingsplan.exerciseInTraining?.count ?? 0) > 0 {
+                            Button("Trainingsplan starten") {
+                                newTrainingPlanExecution = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan, exerciseExecution: [])
+                                
+                                context.insert(newTrainingPlanExecution!)
+                                
+                                try! context.save()
+                                print(newTrainingPlanExecution!.tID)
+                                activeTrainingID = newTrainingPlanExecution!.tID
+                            }
                         }
                     }
                 }
@@ -77,8 +87,8 @@ struct TrainingsPlanEditView: View {
         .onChange(of: editMode!.wrappedValue, perform: {newValue in
             isShowingCompactMode.toggle()
         })
-
     }
+    
     
     private func delete(at offsets: IndexSet) {
         trainingsplan.exerciseInTraining?.remove(atOffsets: offsets)
@@ -90,20 +100,20 @@ struct TrainingsPlanEditView: View {
         guard let sourceIndex = source.first else {
             return
         }
-    
+        
         let targetindex = sourceIndex > destination ? destination : destination - 1
-    
+        
         print("Move from " + sourceIndex.description + " to " + targetindex.description)
         
         
         if sourceIndex < targetindex {
-                exercises[sourceIndex].order = Int32(targetindex)
-                
-                // Shift elements between sourceIndex and targetindex down by 1
-                for index in sourceIndex + 1...targetindex {
-                    exercises[index].order -= 1
-                }
-
+            exercises[sourceIndex].order = Int32(targetindex)
+            
+            // Shift elements between sourceIndex and targetindex down by 1
+            for index in sourceIndex + 1...targetindex {
+                exercises[index].order -= 1
+            }
+            
         } else {
             exercises[sourceIndex].order = Int32(targetindex)
             
@@ -126,7 +136,7 @@ struct TrainingsPlanEditView: View {
         TrainingsPlanEditView(trainingsplan: tp1.first!)
             .modelContainer(PreviewContainerGenerator.previewContainer)
     }
-
+    
 }
 
 struct AddExerciseToPlan: View {
@@ -141,14 +151,14 @@ struct AddExerciseToPlan: View {
     @State private var setCount: Int32 = 1
     @State private var repCount: Int32 = 1
     @State private var weight: Float = 10
-
+    
     
     var alreadyAddedExerciseNames: [String]
     
     @Query private var categories: [ExerciseCategory]
     
     @Query private var exercises: [Exercise]
-
+    
     var body: some View {
         NavigationStack{
             Form {
@@ -174,8 +184,8 @@ struct AddExerciseToPlan: View {
                     } else {
                         Text("Keine Übungen mehr in der Kategorie")
                     }
-                                        
- 
+                    
+                    
                 }
                 
                 if selectedExerciseName != "" {
@@ -200,13 +210,13 @@ struct AddExerciseToPlan: View {
                             TextField("Gewicht:", value: $weight, formatter: formatter, onCommit: {
                                 weight = round(weight / 2.5) * 2.5
                             })
-                                .keyboardType(.decimalPad)
-                                .frame(minWidth: 15, maxWidth: 60)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.decimalPad)
+                            .frame(minWidth: 15, maxWidth: 60)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         } label: {
                             Text("Gewicht:")
                         }
-
+                        
                         Stepper("Gewicht:", value: $weight, in: Float(minWeightStepper)...Float(maxWeightStepper), step: weightStepStepper)
                             .labelsHidden()
                             .onAppear {
@@ -230,11 +240,11 @@ struct AddExerciseToPlan: View {
                         if selectedExerciseName == "" {
                             return
                         }
-                                                
+                        
                         let selectedExercise = exercises.first(where: {$0.name == selectedExerciseName})
                         
                         let newExerciseInTraining = ExerciseInTraining(order: currentOrderPosition, repCount: repCount, setCount: setCount, weight: weight, exercise: selectedExercise, exerciseExecution: [], trainingPlan: nil)
-                                                                    
+                        
                         currentTrainingsplan.exerciseInTraining?.append(newExerciseInTraining)
                         
                         
@@ -255,13 +265,13 @@ struct EditExerciseInPlan: View {
     @State var selectedExerciseName: String = ""
     
     @Bindable var editableExercise: ExerciseInTraining
-
+    
     @State var alreadyAddedExerciseNames: [String]
     
     @Query private var categories: [ExerciseCategory]
     
     @Query private var exercises: [Exercise]
-
+    
     var body: some View {
         NavigationStack{
             Form {
@@ -287,8 +297,8 @@ struct EditExerciseInPlan: View {
                     } else {
                         Text("Keine Übungen mehr in der Kategorie")
                     }
-                                        
- 
+                    
+                    
                 }
                 
                 if selectedExerciseName != "" {
@@ -313,13 +323,13 @@ struct EditExerciseInPlan: View {
                             TextField("Gewicht:", value: $editableExercise.weight, formatter: formatter, onCommit: {
                                 editableExercise.weight = round(editableExercise.weight / 2.5) * 2.5
                             })
-                                .keyboardType(.decimalPad)
-                                .frame(minWidth: 15, maxWidth: 60)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.decimalPad)
+                            .frame(minWidth: 15, maxWidth: 60)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         } label: {
                             Text("Gewicht:")
                         }
-
+                        
                         Stepper("Gewicht:", value: $editableExercise.weight, in: Float(minWeightStepper)...Float(maxWeightStepper), step: weightStepStepper)
                             .labelsHidden()
                             .onAppear {
@@ -340,7 +350,7 @@ struct EditExerciseInPlan: View {
                         if selectedExerciseName == "" {
                             return
                         }
-                                                
+                        
                         let selectedExercise = exercises.first(where: {$0.name == selectedExerciseName})
                         
                         editableExercise.exercise = selectedExercise

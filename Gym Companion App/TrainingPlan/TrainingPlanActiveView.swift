@@ -10,13 +10,17 @@ import SwiftData
 
 struct TrainingPlanActiveView: View {
     @Environment(\.presentationMode) var presentationMode
-
-    var activeTrainingPlan: TrainingPlan
+    @State var currentTrainingPlanExecution: TrainingPlanExecution? = nil
+    @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
+    
     var body: some View {
         NavigationStack {
             VStack {
-                Text("HELLO")
+                Text(currentTrainingPlanExecution?.trainingsPlan?.name ?? "DEFAULT")
+                Text(currentTrainingPlanExecution?.tID ?? "DEFAULT")
+
                 Button("Dismiss") {
+                    activeTrainingID = ""
                     presentationMode.wrappedValue.dismiss()
                 }
                 .padding()
@@ -25,20 +29,19 @@ struct TrainingPlanActiveView: View {
                 .cornerRadius(8)
             }
         }
-        .navigationTitle(activeTrainingPlan.name)
         .navigationBarBackButtonHidden(true) // Hides the back button
     }
 }
 
 #Preview {
     ZStack {
-        var descriptor = FetchDescriptor<TrainingPlan>(predicate: #Predicate { $0.name.contains("1")})
+        var descriptor = FetchDescriptor<TrainingPlanExecution>(predicate: #Predicate { $0.endTimeStamp == -1})
         
         let tp1 = try! PreviewContainerGenerator.previewContainer.mainContext.fetch(
             descriptor
         )
         
-        TrainingPlanActiveView(activeTrainingPlan: tp1.first!)
+        TrainingPlanActiveView(currentTrainingPlanExecution: tp1.first!)
             .modelContainer(PreviewContainerGenerator.previewContainer)
     }
 

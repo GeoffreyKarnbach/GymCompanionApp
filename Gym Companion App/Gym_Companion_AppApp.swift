@@ -12,12 +12,13 @@ import CoreData
 @main
 struct Gym_Companion_AppApp: App {
     @AppStorage("isFirstTimeLaunch") private var isFirstTimeLaunch: Bool = true
+    @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
 
     var body: some Scene {
         WindowGroup {
             TabBarView()
         }
-        .modelContainer(ContainerGenerator.create(shouldCreateDefaults: &isFirstTimeLaunch))
+        .modelContainer(ContainerGenerator.create(shouldCreateDefaults: &isFirstTimeLaunch, activeTpExecutionID: &activeTrainingID))
 
     }
 

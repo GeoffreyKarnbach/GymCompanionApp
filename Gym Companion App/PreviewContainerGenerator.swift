@@ -52,6 +52,10 @@ class PreviewContainerGenerator {
             let exerciseInTraining1 = ExerciseInTraining(order: 1, repCount: 12, setCount: 3, weight: 25, exercise: exercise1, exerciseExecution: [], trainingPlan: trainingsplan1)
             
             container.mainContext.insert(exerciseInTraining1)
+            
+            let activeTrainingPlan = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan1, exerciseExecution: [])
+            
+            container.mainContext.insert(activeTrainingPlan)
 
             return container
         } catch {

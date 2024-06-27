@@ -11,7 +11,7 @@ import SwiftData
 actor ContainerGenerator {
     
     @MainActor
-    static func create(shouldCreateDefaults: inout Bool) -> ModelContainer {
+    static func create(shouldCreateDefaults: inout Bool, activeTpExecutionID: inout String) -> ModelContainer {
         let schema = Schema([
             ExerciseInTraining.self,
             ExerciseCategory.self,
@@ -39,6 +39,7 @@ actor ContainerGenerator {
 
 
             shouldCreateDefaults = false
+            activeTpExecutionID = ""
             
             let exerciseCategories = JsonDecoders.decodeExerciseCategories(from: "exercisesDefaultCategories")
             if !exerciseCategories.isEmpty {

@@ -10,10 +10,12 @@ import SwiftData
 
 @Model public class TrainingPlanExecution {
     var startTimeStamp: Int32
-    var endTimeStamp: Int32?
+    var endTimeStamp: Int32
     
     var trainingsPlan: TrainingPlan?
     var exerciseExecution: [ExerciseExecution]?
+    
+    let tID: String = UUID().uuidString
     
     init(startTimeStamp: Int32 = 0, endTimeStamp: Int32 = 0, trainingsPlan: TrainingPlan? = nil, exerciseExecution: [ExerciseExecution]? = nil) {
         self.startTimeStamp = startTimeStamp

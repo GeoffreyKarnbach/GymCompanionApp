@@ -10,6 +10,7 @@ import SwiftData
 
 struct TrainingsPlanView: View {
     @Environment(\.modelContext) private var context
+    @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
     
     @State private var isShowingNewPlan: Bool = false
     @State private var isShowingEditPlan: Bool = false
@@ -18,57 +19,67 @@ struct TrainingsPlanView: View {
     @Query() var trainingsplans: [TrainingPlan]
 
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(trainingsplans) {
-                    trainingplan in
-                    TraingsPlanCell(trainingplan: trainingplan)
+        if activeTrainingID != "" {
+            let descriptor = FetchDescriptor<TrainingPlanExecution>(predicate: #Predicate { $0.tID == activeTrainingID})
+            
+            let tpExec = try! context.fetch(
+                descriptor
+            ).first!
+            
+            TrainingPlanActiveView(currentTrainingPlanExecution: tpExec)
+        } else {
+            NavigationStack {
+                List {
+                    ForEach(trainingsplans) {
+                        trainingplan in
+                        TraingsPlanCell(trainingplan: trainingplan)
+                        
+                            .swipeActions {
+                                Button("Löschen", role: .destructive) {
+                                    context.delete(trainingplan)
+                                }
+                                .tint(.red)
+                                
+                                Button("Bearbeiten") {
+                                    trainingsPlanToEdit = trainingplan
+                                }
+                                .tint(.blue)
+                                
+                            }
+                    }
                     
-                        .swipeActions {
-                            Button("Löschen", role: .destructive) {
-                                context.delete(trainingplan)
-                            }
-                            .tint(.red)
-                            
-                            Button("Bearbeiten") {
-                                trainingsPlanToEdit = trainingplan
-                            }
-                            .tint(.blue)
-                            
-                        }
                 }
-
-            }
-            .sheet(isPresented: $isShowingNewPlan) { AddTraingsPlan() }
-            .sheet(item: $trainingsPlanToEdit) { plan in
-                EditTraingsPlan(trainingplan: plan)
-            }
-            .toolbar {
-                if !trainingsplans.isEmpty {
-                    Button(action: {
-                        isShowingNewPlan = true
-                    })
-                    {
-                        HStack {
-                            Image(systemName: "plus.circle")
+                .sheet(isPresented: $isShowingNewPlan) { AddTraingsPlan() }
+                .sheet(item: $trainingsPlanToEdit) { plan in
+                    EditTraingsPlan(trainingplan: plan)
+                }
+                .toolbar {
+                    if !trainingsplans.isEmpty {
+                        Button(action: {
+                            isShowingNewPlan = true
+                        })
+                        {
+                            HStack {
+                                Image(systemName: "plus.circle")
+                            }
                         }
                     }
                 }
-            }
-            .navigationTitle("Trainingspläne")
-            .overlay {
-                if trainingsplans.isEmpty
-                {
-                    ContentUnavailableView(label: {
-                        Label("Kein Trainingsplan", systemImage: "list.bullet.rectangle.portrait")
-                    }, description: {
-                        Text("Füge deinen ersten Trainingsplan hinzu!")
-                    }, actions: {
-                        Button("Neuer trainingsplan") {
-                            isShowingNewPlan = true
-                        }
-                    })
-                    .offset(y: -60)
+                .navigationTitle("Trainingspläne")
+                .overlay {
+                    if trainingsplans.isEmpty
+                    {
+                        ContentUnavailableView(label: {
+                            Label("Kein Trainingsplan", systemImage: "list.bullet.rectangle.portrait")
+                        }, description: {
+                            Text("Füge deinen ersten Trainingsplan hinzu!")
+                        }, actions: {
+                            Button("Neuer trainingsplan") {
+                                isShowingNewPlan = true
+                            }
+                        })
+                        .offset(y: -60)
+                    }
                 }
             }
         }
