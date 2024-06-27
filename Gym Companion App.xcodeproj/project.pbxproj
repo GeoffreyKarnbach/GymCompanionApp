@@ -30,6 +30,7 @@
 		8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4322C26C9980058811B /* exercisesDefault.json */; };
 		8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */; };
 		8F76CE862C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */; };
+		8FAED5E62C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */; };
 		8FBB73C22C28954F003188BA /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB73C12C28954F003188BA /* ExerciseView.swift */; };
 		8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */; };
 		8FE953992C2213A000F774E9 /* Gym_Companion_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE953982C2213A000F774E9 /* Gym_Companion_AppTests.swift */; };
@@ -80,6 +81,7 @@
 		8F55B4322C26C9980058811B /* exercisesDefault.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefault.json; sourceTree = "<group>"; };
 		8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefaultCategories.json; sourceTree = "<group>"; };
 		8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanActiveView.swift; sourceTree = "<group>"; };
+		8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanSingleActiveExerciseView.swift; sourceTree = "<group>"; };
 		8FBB73C12C28954F003188BA /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainerGenerator.swift; sourceTree = "<group>"; };
 		8FE953822C22139F00F774E9 /* Gym Companion App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gym Companion App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 				8F55B4132C26BEB40058811B /* TrainingsPlanListView.swift */,
 				8F55B4142C26BEB40058811B /* TrainingsPlanSingleExerciseView.swift */,
 				8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */,
+				8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */,
 			);
 			path = TrainingPlan;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				8F55B4282C26BEB40058811B /* TrainingsPlanSingleExerciseView.swift in Sources */,
 				8F55B4312C26C5490058811B /* JsonDecoders.swift in Sources */,
 				8F55B4242C26BEB40058811B /* ExerciseListView.swift in Sources */,
+				8FAED5E62C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift in Sources */,
 				8F55B4272C26BEB40058811B /* TrainingsPlanListView.swift in Sources */,
 				8F55B4262C26BEB40058811B /* TrainingsPlanEditView.swift in Sources */,
 				8F55B4202C26BEB40058811B /* ExerciseExecutionSet.swift in Sources */,

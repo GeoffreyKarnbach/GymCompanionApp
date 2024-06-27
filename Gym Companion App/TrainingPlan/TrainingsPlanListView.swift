@@ -24,9 +24,17 @@ struct TrainingsPlanView: View {
             
             let tpExec = try! context.fetch(
                 descriptor
-            ).first!
+            )
             
-            TrainingPlanActiveView(currentTrainingPlanExecution: tpExec)
+            if tpExec.count > 0 {
+                TrainingPlanActiveView(currentTrainingPlanExecution: tpExec.first)
+            } else {
+                Text("No active training plans")
+                    .onAppear {
+                        activeTrainingID = ""
+                    }
+            }
+            
         } else {
             NavigationStack {
                 List {
