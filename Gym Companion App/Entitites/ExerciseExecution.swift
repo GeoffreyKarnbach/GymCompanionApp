@@ -9,7 +9,6 @@
 import Foundation
 import SwiftData
 
-
 @Model public class ExerciseExecution {
     var executionScore: Int32? = 0
     var exhaustScore: Int32? = 0
@@ -18,6 +17,7 @@ import SwiftData
     var exerciseInTraining: ExerciseInTraining?
     
     @Relationship(inverse: \TrainingPlanExecution.exerciseExecution) var trainingPlanExecution: TrainingPlanExecution?
+    let eeID = UUID().uuidString
     
     init(executionScore: Int32? = nil, exhaustScore: Int32? = nil, exercise: Exercise? = nil, exerciseExecutionSets: [ExerciseExecutionSet]? = nil, exerciseInTraining: ExerciseInTraining? = nil) {
         self.executionScore = executionScore

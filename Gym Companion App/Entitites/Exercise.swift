@@ -22,6 +22,7 @@ import SwiftData
     var category: ExerciseCategory?
     var executions: [ExerciseExecution]?
     @Relationship(deleteRule: .cascade, inverse: \ExerciseInTraining.exercise) var inTrainings: [ExerciseInTraining]?
+    let eID: String = UUID().uuidString
     
     init(isDefault: Bool = true, explanation: String = "", fullName: String = "", iconName: String = "", maxWeight: Int32 = 0, minWeight: Int32 = 0, name: String = "", weightStep: Float = 0, category: ExerciseCategory? = nil, executions: [ExerciseExecution]? = nil, inTrainings: [ExerciseInTraining]? = nil) {
         self.isDefault = isDefault

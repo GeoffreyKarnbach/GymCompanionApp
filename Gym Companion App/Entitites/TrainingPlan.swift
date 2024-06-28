@@ -15,7 +15,7 @@ import SwiftData
     var name: String
     @Relationship(deleteRule: .cascade, inverse: \ExerciseInTraining.trainingPlan) var exerciseInTraining: [ExerciseInTraining]?
     @Relationship(inverse: \TrainingPlanExecution.trainingsPlan) var trainingPlanExecutions: [TrainingPlanExecution]?
-
+    let tpID: String = UUID().uuidString
     
     init(days: String = "", name: String = "", exerciseInTraining: [ExerciseInTraining]? = nil) {
         self.days = days

@@ -23,6 +23,8 @@ struct GlobalAnalyseView: View {
                 descriptor
             )
             
+            Text("Count: " + tpExec.count.description)
+            
             ForEach(tpExec.sorted(by: { $0.tID < $1.tID }), id: \.self) { tpExecVal in
                 Text(tpExecVal.tID)
             }

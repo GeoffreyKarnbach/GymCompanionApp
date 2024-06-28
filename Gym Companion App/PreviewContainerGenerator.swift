@@ -51,12 +51,18 @@ class PreviewContainerGenerator {
             
             let exerciseInTraining1 = ExerciseInTraining(order: 1, repCount: 12, setCount: 3, weight: 25, exercise: exercise1, exerciseExecution: [], trainingPlan: trainingsplan1)
             
+            let exerciseInTraining2 = ExerciseInTraining(order: 2, repCount: 12, setCount: 3, weight: 25, exercise: exercise2, exerciseExecution: [], trainingPlan: trainingsplan1)
+            
             container.mainContext.insert(exerciseInTraining1)
+            
+            let exerciseExecution1 = ExerciseExecution(executionScore: 4, exhaustScore: 3, exercise: exercise1, exerciseExecutionSets: [], exerciseInTraining: exerciseInTraining1)
+            
+            container.mainContext.insert(exerciseExecution1)
             
             let activeTrainingPlan = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan1, exerciseExecution: [])
             
             container.mainContext.insert(activeTrainingPlan)
-
+            
             return container
         } catch {
             fatalError("Failed to create model container for previewing: \(error.localizedDescription)")

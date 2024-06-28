@@ -9,9 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct TrainingPlanActiveView: View {
-    @Environment(\.presentationMode) var presentationMode
     @State var currentTrainingPlanExecution: TrainingPlanExecution? = nil
+    @Environment(\.modelContext) private var context
     @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
+    @State var exercisesDoneInCurrentTP : [String] = []
     
     var body: some View {
         NavigationStack {
@@ -19,16 +20,29 @@ struct TrainingPlanActiveView: View {
                 Text(currentTrainingPlanExecution?.trainingsPlan?.name ?? "NAME")
                 Text(currentTrainingPlanExecution?.trainingsPlan?.days ?? "TAGE")
                 
-                
                 if let exercises = currentTrainingPlanExecution?.trainingsPlan?.exerciseInTraining {
                     List {
                         ForEach(exercises.sorted(by: {
                             $0.order < $1.order
                         }), id: \.self) { exercise in
-                            TrainingsPlanSingleExerciseView(exercise: exercise, isActiveTrainingView: true, exerciseCompleted: true)
-                                .padding(.horizontal)
+                            let isCompleted = exercisesDoneInCurrentTP.contains(exercise.exercise?.eID ?? "")
+
                             
+                            if isCompleted {
+                                TrainingsPlanSingleExerciseView(exercise: exercise, isActiveTrainingView: true, exerciseCompleted: true)
+                                    .padding(.horizontal)
+                            } else {
+                                NavigationLink(destination: TrainingPlanSingleActiveExerciseView(
+                                    currentTrainingsPlan: currentTrainingPlanExecution!, currentExerciseInTraining: exercise
+                                )) {
+                                    TrainingsPlanSingleExerciseView(exercise: exercise, isActiveTrainingView: true, exerciseCompleted: false)
+                                        .padding(.horizontal)
+                                }
+                            }
                         }
+                    }
+                    .onAppear {
+                        computeDoneExercises()
                     }
                 }
                 
@@ -58,21 +72,52 @@ struct TrainingPlanActiveView: View {
                 }
                 Text("Dauer: " + timeDifference())
                 
-                Button("Training abschließen") {
-                    activeTrainingID = ""
-                    presentationMode.wrappedValue.dismiss()
+                HStack {
+                    Button("Training abschließen") {
+                        currentTrainingPlanExecution?.endTimeStamp = Int32(Date().timeIntervalSince1970)
+                        activeTrainingID = ""
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
+                    
+                    Button("Training abbrechen") {
+                        if let curr = currentTrainingPlanExecution {
+                            context.delete(curr)
+
+                        }
+
+                        activeTrainingID = ""
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
                 }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(8)
-                .padding(.top, 20)
-                .padding(.bottom, 10)
-
-
             }
         }
         .navigationBarBackButtonHidden(true) // Hides the back button
+    }
+    
+    private func computeDoneExercises() {
+        print("ON APPEAR")
+        let descriptor = FetchDescriptor<ExerciseExecution>(predicate: nil)
+        
+        let exerciseExec = try! context.fetch(
+            descriptor
+        )
+        
+        let filteredResults = exerciseExec.filter {$0.exerciseInTraining?.trainingPlan?.tpID ==  currentTrainingPlanExecution?.trainingsPlan?.tpID &&
+            currentTrainingPlanExecution?.tID ==
+            $0.trainingPlanExecution?.tID
+        }
+        
+        exercisesDoneInCurrentTP = filteredResults.compactMap { $0.exerciseInTraining?.exercise?.eID }
     }
 }
 
