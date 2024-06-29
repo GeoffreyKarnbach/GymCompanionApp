@@ -105,7 +105,6 @@ struct TrainingPlanActiveView: View {
     }
     
     private func computeDoneExercises() {
-        print("ON APPEAR")
         let descriptor = FetchDescriptor<ExerciseExecution>(predicate: nil)
         
         let exerciseExec = try! context.fetch(
