@@ -29,6 +29,7 @@
 		8F55B4312C26C5490058811B /* JsonDecoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F55B4302C26C5490058811B /* JsonDecoders.swift */; };
 		8F55B4332C26C9980058811B /* exercisesDefault.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4322C26C9980058811B /* exercisesDefault.json */; };
 		8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */; };
+		8F5E05AE2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */; };
 		8F76CE862C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */; };
 		8FAED5E62C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */; };
 		8FBB73C22C28954F003188BA /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB73C12C28954F003188BA /* ExerciseView.swift */; };
@@ -80,6 +81,7 @@
 		8F55B4302C26C5490058811B /* JsonDecoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoders.swift; sourceTree = "<group>"; };
 		8F55B4322C26C9980058811B /* exercisesDefault.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefault.json; sourceTree = "<group>"; };
 		8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefaultCategories.json; sourceTree = "<group>"; };
+		8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanExecutionRecapView.swift; sourceTree = "<group>"; };
 		8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanActiveView.swift; sourceTree = "<group>"; };
 		8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanSingleActiveExerciseView.swift; sourceTree = "<group>"; };
 		8FBB73C12C28954F003188BA /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				8F55B4142C26BEB40058811B /* TrainingsPlanSingleExerciseView.swift */,
 				8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */,
 				8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */,
+				8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */,
 			);
 			path = TrainingPlan;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F5E05AE2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift in Sources */,
 				8FBB73C22C28954F003188BA /* ExerciseView.swift in Sources */,
 				8F55B41F2C26BEB40058811B /* ExerciseExecution.swift in Sources */,
 				8F55B41E2C26BEB40058811B /* ExerciseCategory.swift in Sources */,

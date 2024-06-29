@@ -57,9 +57,22 @@ class PreviewContainerGenerator {
             
             let exerciseExecution1 = ExerciseExecution(executionScore: 4, exhaustScore: 3, exercise: exercise1, exerciseExecutionSets: [], exerciseInTraining: exerciseInTraining1)
             
-            container.mainContext.insert(exerciseExecution1)
+            let exerciseExecutionSet1 = ExerciseExecutionSet(reps: 12, weight: 10, exerciseExecution: exerciseExecution1)
+            let exerciseExecutionSet2 = ExerciseExecutionSet(reps: 12, weight: 10, exerciseExecution: exerciseExecution1)
+            let exerciseExecutionSet3 = ExerciseExecutionSet(reps: 12, weight: 10, exerciseExecution: exerciseExecution1)
+
             
-            let activeTrainingPlan = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan1, exerciseExecution: [])
+            exerciseExecution1.exerciseExecutionSets?.append(exerciseExecutionSet1)
+            exerciseExecution1.exerciseExecutionSets?.append(exerciseExecutionSet2)
+            exerciseExecution1.exerciseExecutionSets?.append(exerciseExecutionSet3)
+
+            
+            container.mainContext.insert(exerciseExecution1)
+            container.mainContext.insert(exerciseExecutionSet1)
+            container.mainContext.insert(exerciseExecutionSet2)
+            container.mainContext.insert(exerciseExecutionSet3)
+
+            let activeTrainingPlan = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan1, exerciseExecution: [exerciseExecution1])
             
             container.mainContext.insert(activeTrainingPlan)
             

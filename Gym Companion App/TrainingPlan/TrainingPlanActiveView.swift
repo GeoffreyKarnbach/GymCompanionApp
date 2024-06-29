@@ -13,6 +13,8 @@ struct TrainingPlanActiveView: View {
     @Environment(\.modelContext) private var context
     @AppStorage("activeTrainingID") private var activeTrainingID: String = ""
     @State var exercisesDoneInCurrentTP : [String] = []
+    @State private var shouldShowRecapScreen = false
+
     
     var body: some View {
         NavigationStack {
@@ -75,7 +77,7 @@ struct TrainingPlanActiveView: View {
                 HStack {
                     Button("Training abschließen") {
                         currentTrainingPlanExecution?.endTimeStamp = Int32(Date().timeIntervalSince1970)
-                        activeTrainingID = ""
+                        shouldShowRecapScreen = true
                     }
                     .padding()
                     .background(Color.blue)
@@ -83,7 +85,10 @@ struct TrainingPlanActiveView: View {
                     .cornerRadius(8)
                     .padding(.top, 20)
                     .padding(.bottom, 10)
-                    
+                    .navigationDestination(isPresented: $shouldShowRecapScreen) {
+                        TrainingPlanExecutionRecapView(tpExecution: currentTrainingPlanExecution!)
+                    }
+
                     Button("Training abbrechen") {
                         
                         
@@ -110,6 +115,11 @@ struct TrainingPlanActiveView: View {
     }
     
     private func computeDoneExercises() {
+        
+        if currentTrainingPlanExecution?.endTimeStamp != -1 {
+            activeTrainingID = ""
+        }
+        
         let descriptor = FetchDescriptor<ExerciseExecution>(predicate: nil)
         
         let exerciseExec = try! context.fetch(
