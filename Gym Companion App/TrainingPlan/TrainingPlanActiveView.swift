@@ -85,7 +85,12 @@ struct TrainingPlanActiveView: View {
                     .padding(.bottom, 10)
                     
                     Button("Training abbrechen") {
+                        
+                        
                         if let curr = currentTrainingPlanExecution {
+                            for execution in (curr.exerciseExecution ?? []) {
+                                context.delete(execution)
+                            }
                             context.delete(curr)
 
                         }
