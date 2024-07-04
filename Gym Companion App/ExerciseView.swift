@@ -19,30 +19,53 @@ struct ExerciseView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(exercise.fullName)
+                .font(.title)
+                .fontWeight(.bold)
+                .underline()
+                .padding(.vertical, 15)
             Text(exercise.name)
             Text(exercise.category?.name ?? "TEST")
+            Divider()
             if (exercise.inTrainings?.count ?? 0) > 0 {
-                Divider()
                 Text("Übung in Trainingsplänen:")
+                    .fontWeight(.bold)
+                    .underline()
+                    .padding(.vertical, 15)
                 VStack {
-                    ForEach((exercise.inTrainings?.sorted{($0.trainingPlan?.name ?? "") < ($1.trainingPlan?.name ?? "")})!, id: \.self) {
-                        Text($0.trainingPlan?.name ?? "DEFAULT TRAININGSPLAN NAME")
+                    ForEach((exercise.inTrainings?.sorted{($0.trainingPlan?.name ?? "") < ($1.trainingPlan?.name ?? "")})!, id: \.self) { execInTp in
+                        if let tp = execInTp.trainingPlan {
+                            NavigationLink(destination: TrainingsPlanDetailView(trainingsplan: tp)) {
+                                HStack {
+                                    Spacer()
+                                    Text(execInTp.trainingPlan?.name ?? "DEFAULT TRAININGSPLAN NAME")
+                                    Spacer()
+                                }
+                                    .padding()
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .padding(.trailing, 15)
+                            }
+                        }
                     }
                 }
             }
-            
             if (exercise.executions?.count ?? 0) > 0 {
+                Spacer()
                 Divider()
                 Text("Ausführungen:")
+                    .fontWeight(.bold)
+                    .underline()
+                    .padding(.vertical, 15)
                 ForEach(exercise.executions ?? [], id: \.self) { execution in
                     Text(execution.exercise?.fullName ?? "NAME")
                 }
             }
+            Spacer()
 
         }
         .toolbar {
             if !exercise.isDefault {
-                // TODO: ADD DELETE BUTTON
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
                         isShowingExerciseEditScreen = true
@@ -60,9 +83,24 @@ struct ExerciseView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $isShowingExerciseEditScreen) { EditCustomExercise(exercise: exercise) }
+        .padding(.leading, 15)
+        .navigationBarTitleDisplayMode(.inline)
 
     }
     
+}
+
+#Preview {
+    ZStack {
+        var descriptor = FetchDescriptor<Exercise>(predicate: #Predicate { $0.name.contains("3")})
+        
+        let exec1 = try! PreviewContainerGenerator.previewContainer.mainContext.fetch(
+            descriptor
+        )
+        
+        ExerciseView(exercise: exec1.first!)
+            .modelContainer(PreviewContainerGenerator.previewContainer)
+    }
 }
 
 struct EditCustomExercise: View {

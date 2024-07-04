@@ -26,9 +26,14 @@ struct TrainingPlanSingleActiveExerciseView: View {
         NavigationStack {
             
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(currentExerciseInTraining.exercise?.fullName  ?? "Default Übung")
+                    .fontWeight(.bold)
+                    .underline()
+                    .padding(.vertical, 15)
+                    .padding(.leading, 15)
                 Text(currentExerciseInTraining.exercise?.category?.name ?? "Default Kategorie")
+                    .padding(.leading, 15)
                 Divider()
                 Spacer()
                 
@@ -57,11 +62,20 @@ struct TrainingPlanSingleActiveExerciseView: View {
                 }
                 
                 if currentExerciseExecutionSets.count < currentExerciseInTraining.setCount {
-                    Button("Neues Set"){
-                        currentExerciseExecutionSets.append(ExerciseSet(set: ExerciseExecutionSet(reps: currentExerciseInTraining.repCount, weight: currentExerciseInTraining.weight, exerciseExecution: nil), isViewingMode: false, isCompleted: false, orderNumber: (currentExerciseExecutionSets.count + 1), planedWeight: currentExerciseInTraining.weight, planedReps: currentExerciseInTraining.repCount))
+                    HStack {
+                        Spacer()
+                        Button("Neues Set"){
+                            currentExerciseExecutionSets.append(ExerciseSet(set: ExerciseExecutionSet(reps: currentExerciseInTraining.repCount, weight: currentExerciseInTraining.weight, exerciseExecution: nil), isViewingMode: false, isCompleted: false, orderNumber: (currentExerciseExecutionSets.count + 1), planedWeight: currentExerciseInTraining.weight, planedReps: currentExerciseInTraining.repCount))
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                        Spacer()
                     }
-                    .padding(.bottom, 50)
-                    Spacer()
+                    
                 } else {
                     Spacer()
                     
@@ -90,6 +104,7 @@ struct TrainingPlanSingleActiveExerciseView: View {
                     }
                     
                     HStack {
+                        Spacer()
                         Button("Übung Übersicht") {
                             currentExerciseExecution.exhaustScore = Int32(exhaustScore)
                             currentExerciseExecution.executionScore = Int32(executionScore)
@@ -121,6 +136,7 @@ struct TrainingPlanSingleActiveExerciseView: View {
                         .cornerRadius(8)
                         .padding(.top, 20)
                         .padding(.bottom, 10)
+                        Spacer()
                         
                         /**
                          Button("Nächste Übung") {

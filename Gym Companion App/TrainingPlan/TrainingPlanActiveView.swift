@@ -19,7 +19,12 @@ struct TrainingPlanActiveView: View {
     var body: some View {
         NavigationStack {
             VStack {
+
                 Text(currentTrainingPlanExecution?.trainingsPlan?.name ?? "NAME")
+                    .fontWeight(.bold)
+                    .underline()
+                    .padding(.vertical, 15)
+                
                 Text(currentTrainingPlanExecution?.trainingsPlan?.days ?? "TAGE")
                 
                 if let exercises = currentTrainingPlanExecution?.trainingsPlan?.exerciseInTraining {
