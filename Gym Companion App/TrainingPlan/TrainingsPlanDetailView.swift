@@ -37,7 +37,7 @@ struct TrainingsPlanDetailView: View {
                 
                 
                 VStack(alignment: .leading) {
-                    ForEach((trainingsplan.trainingPlanExecutions?.sorted(by: { $0.startTimeStamp < $1.endTimeStamp }) ?? []), id: \.self) { tpExec in
+                    ForEach((trainingsplan.trainingPlanExecutions?.sorted(by: { $0.startTimeStamp > $1.endTimeStamp }) ?? []), id: \.self) { tpExec in
                         NavigationLink(destination: TrainingPlanExecutionRecapView(tpExecution: tpExec, disableNavigation: false)) {
                             
                             let dateFormatter = {

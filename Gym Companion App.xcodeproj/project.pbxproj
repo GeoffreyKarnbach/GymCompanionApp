@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0E8BED2C3729F700D7A717 /* ExerciseExecutionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E8BEC2C3729F700D7A717 /* ExerciseExecutionRecapView.swift */; };
 		8F4D458F2C2C35B5005D5021 /* TrainingPlanExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4D458E2C2C35B5005D5021 /* TrainingPlanExecution.swift */; };
 		8F55B41D2C26BEB40058811B /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F55B4062C26BEB40058811B /* Exercise.swift */; };
 		8F55B41E2C26BEB40058811B /* ExerciseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F55B4072C26BEB40058811B /* ExerciseCategory.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F0E8BEC2C3729F700D7A717 /* ExerciseExecutionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseExecutionRecapView.swift; sourceTree = "<group>"; };
 		8F4D458E2C2C35B5005D5021 /* TrainingPlanExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanExecution.swift; sourceTree = "<group>"; };
 		8F55B4062C26BEB40058811B /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		8F55B4072C26BEB40058811B /* ExerciseCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseCategory.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				8F55B4302C26C5490058811B /* JsonDecoders.swift */,
 				8FEC335E2C282D9200E9D11C /* JsonEncoders.swift */,
 				8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */,
+				8F0E8BEC2C3729F700D7A717 /* ExerciseExecutionRecapView.swift */,
 			);
 			path = "Gym Companion App";
 			sourceTree = SOURCE_ROOT;
@@ -390,6 +393,7 @@
 				8FABDC712C3698FC00C5DF11 /* TrainingsPlanDetailView.swift in Sources */,
 				8F76CE862C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift in Sources */,
 				8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */,
+				8F0E8BED2C3729F700D7A717 /* ExerciseExecutionRecapView.swift in Sources */,
 				8F55B41D2C26BEB40058811B /* Exercise.swift in Sources */,
 				8F55B42B2C26BEB40058811B /* Gym_Companion_AppApp.swift in Sources */,
 				8F55B42F2C26C4B00058811B /* ContainerGenerator.swift in Sources */,
