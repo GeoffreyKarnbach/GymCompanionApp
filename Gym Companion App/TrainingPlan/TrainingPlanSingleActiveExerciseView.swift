@@ -111,6 +111,8 @@ struct TrainingPlanSingleActiveExerciseView: View {
                             
                             context.insert(currentExerciseExecution)
                             
+                            currentExerciseInTraining.exercise?.executions?.append(currentExerciseExecution)
+                            
                             dismiss()
                         }
                         .padding()

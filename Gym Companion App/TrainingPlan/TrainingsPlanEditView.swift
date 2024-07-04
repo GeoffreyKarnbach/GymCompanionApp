@@ -56,6 +56,7 @@ struct TrainingsPlanEditView: View {
                         Button("+ Neue Übung") {
                             isShowingNewExerciseScreen = true
                         }
+                        /**
                         if (trainingsplan.exerciseInTraining?.count ?? 0) > 0 {
                             Button("Trainingsplan starten") {
                                 newTrainingPlanExecution = TrainingPlanExecution(startTimeStamp: Int32(Date().timeIntervalSince1970), endTimeStamp: -1, trainingsPlan: trainingsplan, exerciseExecution: [])
@@ -67,6 +68,7 @@ struct TrainingsPlanEditView: View {
                                 activeTrainingID = newTrainingPlanExecution!.tID
                             }
                         }
+                        **/
                     }
                 }
             }

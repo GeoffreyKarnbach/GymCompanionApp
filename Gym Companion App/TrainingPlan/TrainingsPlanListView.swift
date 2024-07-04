@@ -99,7 +99,7 @@ struct TraingsPlanCell: View {
     var trainingplan: TrainingPlan
     
     var body: some View {
-        NavigationLink(destination: TrainingsPlanEditView(trainingsplan: trainingplan)){
+        NavigationLink(destination: TrainingsPlanDetailView(trainingsplan: trainingplan)){
             GroupBox(label: Label(trainingplan.name , systemImage: "dumbbell")) {
                 HStack {
                     Text(trainingplan.days)

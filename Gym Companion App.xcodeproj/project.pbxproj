@@ -31,6 +31,7 @@
 		8F55B4352C26F2260058811B /* exercisesDefaultCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */; };
 		8F5E05AE2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */; };
 		8F76CE862C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */; };
+		8FABDC712C3698FC00C5DF11 /* TrainingsPlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FABDC702C3698FC00C5DF11 /* TrainingsPlanDetailView.swift */; };
 		8FAED5E62C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */; };
 		8FBB73C22C28954F003188BA /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB73C12C28954F003188BA /* ExerciseView.swift */; };
 		8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */; };
@@ -83,6 +84,7 @@
 		8F55B4342C26F2260058811B /* exercisesDefaultCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exercisesDefaultCategories.json; sourceTree = "<group>"; };
 		8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanExecutionRecapView.swift; sourceTree = "<group>"; };
 		8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanActiveView.swift; sourceTree = "<group>"; };
+		8FABDC702C3698FC00C5DF11 /* TrainingsPlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsPlanDetailView.swift; sourceTree = "<group>"; };
 		8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanSingleActiveExerciseView.swift; sourceTree = "<group>"; };
 		8FBB73C12C28954F003188BA /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		8FDA8F242C295B0B00A7D9E0 /* PreviewContainerGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContainerGenerator.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				8F76CE852C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift */,
 				8FAED5E52C2E0392004C8985 /* TrainingPlanSingleActiveExerciseView.swift */,
 				8F5E05AD2C30953B009840B4 /* TrainingPlanExecutionRecapView.swift */,
+				8FABDC702C3698FC00C5DF11 /* TrainingsPlanDetailView.swift */,
 			);
 			path = TrainingPlan;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				8F55B4222C26BEB40058811B /* TrainingPlan.swift in Sources */,
 				8F55B4232C26BEB40058811B /* ExerciseItemView.swift in Sources */,
 				8F4D458F2C2C35B5005D5021 /* TrainingPlanExecution.swift in Sources */,
+				8FABDC712C3698FC00C5DF11 /* TrainingsPlanDetailView.swift in Sources */,
 				8F76CE862C2CBA2B00DB46F0 /* TrainingPlanActiveView.swift in Sources */,
 				8FDA8F252C295B0B00A7D9E0 /* PreviewContainerGenerator.swift in Sources */,
 				8F55B41D2C26BEB40058811B /* Exercise.swift in Sources */,

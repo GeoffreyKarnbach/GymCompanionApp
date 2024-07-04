@@ -24,15 +24,21 @@ struct ExerciseView: View {
             if (exercise.inTrainings?.count ?? 0) > 0 {
                 Divider()
                 Text("Übung in Trainingsplänen:")
-                List {
+                VStack {
                     ForEach((exercise.inTrainings?.sorted{($0.trainingPlan?.name ?? "") < ($1.trainingPlan?.name ?? "")})!, id: \.self) {
                         Text($0.trainingPlan?.name ?? "DEFAULT TRAININGSPLAN NAME")
                     }
                 }
             }
+            
+            if (exercise.executions?.count ?? 0) > 0 {
+                Divider()
+                Text("Ausführungen:")
+                ForEach(exercise.executions ?? [], id: \.self) { execution in
+                    Text(execution.exercise?.fullName ?? "NAME")
+                }
+            }
 
-
-            Spacer()
         }
         .toolbar {
             if !exercise.isDefault {

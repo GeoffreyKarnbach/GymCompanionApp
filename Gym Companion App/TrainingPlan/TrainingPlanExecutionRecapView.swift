@@ -15,8 +15,20 @@ struct TrainingPlanExecutionRecapView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(alignment: .leading) {
+                
                 Text("Training Zusammenfassung")
+                    .fontWeight(.bold)
+                    .underline()
+                    .padding(.vertical, 15)
+                    .padding(.leading, 15)
+                
+                let dateFormatter = {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "EEEE, dd.MM.yy"
+                    dateFormatter.locale = Locale(identifier: "de_DE")
+                    return dateFormatter
+                }()
                 
                 let startTime = {
                     let timestamp = tpExecution.startTimeStamp
@@ -34,7 +46,12 @@ struct TrainingPlanExecutionRecapView: View {
                     return temp.string(from: date)
                 }
                 
-                Text("Training von " + startTime() + " bis " + endTime())
+                let dateValue = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(tpExecution.startTimeStamp)))
+                
+                Text(dateValue)
+                    .padding(.leading, 15)
+                Text(startTime() + " bis " + endTime())
+                    .padding(.leading, 15)
                 Divider()
                 
                 List {
@@ -64,8 +81,10 @@ struct TrainingPlanExecutionRecapView: View {
                     .padding(.vertical, 4)
                 }
                 
-                Button("Verlassen") {
-                    activeTrainingID = ""
+                if disableNavigation {
+                    Button("Verlassen") {
+                        activeTrainingID = ""
+                    }
                 }
 
             }
