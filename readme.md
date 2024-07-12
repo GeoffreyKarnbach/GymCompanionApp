@@ -80,3 +80,8 @@ Active gym session started, with a list of all planned exercises
 <br>
 Active exercise view, with a list of all sets, and the ability to change the performance for each set, as well as the ability to rate today's exercise performance and exhaustion related to it
 <br>
+
+![Alt text](Images/TrainingsPlanRecap.png)
+<br>
+Recap of the gym session, with a list of all exercises, with their rep count, weight and set count.
+<br>
