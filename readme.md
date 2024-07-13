@@ -1,6 +1,6 @@
 # Gym Companion App
 
-No more need to rely on pen and paper to track your progress at the Gym!
+Transform your workouts with the Gym Companion App – track, analyze, and optimize your progress seamlessly!
 
 ## Concept
 
@@ -13,6 +13,7 @@ The Mobile App has been coded with Swift, SwiftUI as framework, and SwiftData fo
 ## Features of the App
 
 When using the App, the user can:
+
 - Create a new gym session ("Trainingsplan")
 - Add exercises to a gym session, either pre-added exercises (all the exercise catalog from the "FitInn" gyms) or a custom exercise
 - Add a custom exercise to the exercise catalog (and modify/delete them)
@@ -23,6 +24,7 @@ When using the App, the user can:
 ## Possible expansions
 
 The App has been created as a solution to a concrete problem. However, to be viable as a standalone product, further features could be added, amongst them:
+
 - Analysis of the user's performance over time, by taking into account the weight evolution, the execution and exhaustion score
 - Recommend changes upon the results of the analysis (for instance increase the weight on an exercise, replace an exercise)
 - Add a cooperative mode between users, such as a leaderboard (concept known as gamification, people often enjoy competing against each other)
@@ -44,7 +46,6 @@ Detailed view of a specific session plan
 <br>
 Add an exercise to a given session plan (with set count, rep count, weight)
 <br>
-
 
 ![Alt text](Images/TrainingsPlanExerciseList.png)
 <br>
